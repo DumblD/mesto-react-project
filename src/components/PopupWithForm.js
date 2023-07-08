@@ -34,6 +34,7 @@ function PopupWithForm({
       overlayClosePopup();
       return () => {
         document.removeEventListener('keydown', escClose);
+        document.removeEventListener("mousedown", handleOverlay);
       };
     }
 }, [isOpen, onClose]);
