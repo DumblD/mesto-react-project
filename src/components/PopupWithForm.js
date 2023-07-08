@@ -16,12 +16,22 @@ function PopupWithForm({
       onClose();
     }
   }
+  const handleOverlay = (ev) => {
+    // если есть `popup_opened` в классах блока, значит, кликнули на оверлей
+    if (ev.target.classList.contains("popup_opened")) {
+      onClose();
+    }
+  }
   function escClosePopup() {
     document.addEventListener('keydown', escClose);
+  }
+  function overlayClosePopup() {
+    document.addEventListener("mousedown", handleOverlay);
   }
   useEffect(() => {
     if (isOpen) {
       escClosePopup();
+      overlayClosePopup();
       return () => {
         document.removeEventListener('keydown', escClose);
       };
